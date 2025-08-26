@@ -19,18 +19,28 @@ html, body {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   font-family: 'Kalam', cursive;
   background: linear-gradient(135deg, #8B0000, #400000);
   color: #FFD700;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* pushes footer to the bottom */
   align-items: center;
   text-align: center;
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 h1 {
@@ -57,9 +67,15 @@ p { font-size: 2vw; margin: 1vw 0 2vw; }
   margin-top: 2vw;
 }
 
-.btn:hover { transform: scale(1.08) rotate(-2deg); box-shadow: 0 0.8vw 2vw rgba(0,0,0,0.4); }
+.btn:hover { 
+  transform: scale(1.08) rotate(-2deg); 
+  box-shadow: 0 0.8vw 2vw rgba(0,0,0,0.4); 
+}
 
-.details { margin-top: 2vw; font-size: 1.5vw; }
+.details { 
+  margin-top: 2vw; 
+  font-size: 1.5vw; 
+}
 .details p { margin: 0.5vw 0; }
 
 canvas#confetti {
@@ -71,17 +87,29 @@ canvas#confetti {
   z-index:2;
 }
 
+/* Footer Style */
+.footer {
+  font-family: 'Kalam', cursive;
+  font-size: 1vw;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+  z-index: 3;
+}
+
 /* Responsive for mobile */
 @media (max-width: 768px) {
   h1 { font-size: 8vw; }
   p, .details { font-size: 4vw; }
   .btn { font-size: 4vw; padding: 3vw 5vw; }
+  .footer { font-size: 3vw; }
 }
 
 @media (max-width: 480px) {
   h1 { font-size: 10vw; }
   p, .details { font-size: 5vw; }
   .btn { font-size: 5vw; padding: 4vw 6vw; }
+  .footer { font-size: 4vw; }
 }
 </style>
 </head>
@@ -89,15 +117,21 @@ canvas#confetti {
 
 <canvas id="confetti"></canvas>
 
-<h1>You're Invited! To Saish 11th Birthday Party</h1>
-<p>Join us for an unforgettable celebration!</p>
-<a class="btn" href="https://docs.google.com/forms/d/16nrhMrfvONP2GqsTfJQzT1OiyuANxWdS_Qoh_zlyBqc/viewform" target="_blank">RSVP</a>
+<main>
+  <h1>You're Invited! To Saish 11th Birthday Party</h1>
+  <p>Join us for an unforgettable celebration!</p>
+  <a class="btn" href="https://docs.google.com/forms/d/16nrhMrfvONP2GqsTfJQzT1OiyuANxWdS_Qoh_zlyBqc/viewform" target="_blank">RSVP</a>
 
-<div class="details">
-  <p><strong>Date:</strong> September 6, 2025</p>
-  <p><strong>Time:</strong> 3:00 PM (Reach By 2:55)</p>
-  <p><strong>Location:</strong> 350 Talcottville Rd, Vernon, CT 06066</p>
-</div>
+  <div class="details">
+    <p><strong>Date:</strong> September 06, 2025</p>
+    <p><strong>Time:</strong> 3:00 PM (Reach By 2:55 PM)</p>
+    <p><strong>Location:</strong> SPARE TIME - 350 Talcottville Rd, Vernon, CT 06066</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>Expertly Made By Saish Palagiri</p>
+</footer>
 
 <script>
 const confettiCanvas = document.getElementById('confetti');
@@ -155,7 +189,8 @@ setInterval(drawConfetti,20);
 
 </body>
 </html>
+
 """
 
-# Render in Streamlit with a reasonable height
-components.html(html_code, height=800, scrolling=False)
+# Render in Streamlit with full viewport
+components.html(html_code, height=900, scrolling=False)
